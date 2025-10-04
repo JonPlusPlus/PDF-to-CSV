@@ -1,0 +1,2 @@
+ - This script assumes the PDF has actual tabular data (not just visually aligned text).
+ - If you want to improve detection for more complex layouts, consider using camelot or tabula-py, which require Java and are better for scanned or structured tables.

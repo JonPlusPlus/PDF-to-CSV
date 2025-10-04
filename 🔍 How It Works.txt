@@ -1,0 +1,4 @@
+ - pdfplumber opens the PDF and reads pages one by one.
+ - extract_tables() finds any tables on each page.
+ - All tables are added to a list of DataFrames.
+ - They’re concatenated and saved as a CSV.

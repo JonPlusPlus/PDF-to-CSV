@@ -1,0 +1,5 @@
+pdf_to_csv_converter/
+│
+├── pdf_to_csv.py
+├── sample.pdf        # (Put your PDF file here)
+└── output.csv        # (This will be created)

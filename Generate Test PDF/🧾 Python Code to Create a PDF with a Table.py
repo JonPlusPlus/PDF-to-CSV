@@ -1,15 +1,18 @@
 from fpdf import FPDF
+from fpdf.enums import XPos, YPos
 
-# Create a simple PDF with a table
+# Create PDF document
 pdf = FPDF()
 pdf.add_page()
 pdf.set_font("Arial", size=12)
-pdf.cell(200, 10, txt="Sample PDF with Table", ln=True, align="C")
 
-# Add some spacing
-pdf.ln(10)
+# Title
+pdf.cell(200, 10, txt="Sample PDF with Table", new_x=XPos.LEFT, new_y=YPos.NEXT, align="C")
 
-# Table headers
+# Add some vertical spacing
+pdf.cell(0, 10, "", new_x=XPos.LEFT, new_y=YPos.NEXT)
+
+# Table headers and data
 headers = ["ID", "Name", "Age", "Department"]
 data = [
     [1, "Alice", 30, "HR"],
@@ -18,19 +21,22 @@ data = [
     [4, "David", 35, "Marketing"],
 ]
 
-# Set column widths
+# Column widths
 col_widths = [20, 50, 20, 50]
 
 # Print headers
 for i, header in enumerate(headers):
-    pdf.cell(col_widths[i], 10, header, 1, 0, 'C')
-pdf.ln()
+    pdf.cell(col_widths[i], 10, header, border=1, align='C', new_x=XPos.RIGHT, new_y=YPos.TOP)
 
-# Print data rows
+# Move to next line after headers
+pdf.cell(0, 10, "", new_x=XPos.LEFT, new_y=YPos.NEXT)
+
+# Print each row of data
 for row in data:
     for i, item in enumerate(row):
-        pdf.cell(col_widths[i], 10, str(item), 1, 0, 'C')
-    pdf.ln()
+        pdf.cell(col_widths[i], 10, str(item), border=1, align='C', new_x=XPos.RIGHT, new_y=YPos.TOP)
+    # Move to next line after each row
+    pdf.cell(0, 10, "", new_x=XPos.LEFT, new_y=YPos.NEXT)
 
-# Save the PDF
+# Save PDF
 pdf.output("sample_table.pdf")
